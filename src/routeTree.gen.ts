@@ -29,6 +29,7 @@ import { Route as AppAcademicIndexRouteImport } from './routes/_app.academic.ind
 import { Route as AppSalesLeadsRouteImport } from './routes/_app.sales.leads'
 import { Route as AppSalesAgentsRouteImport } from './routes/_app.sales.agents'
 import { Route as AppHrEmployeesRouteImport } from './routes/_app.hr.employees'
+import { Route as AppHrAttendanceRouteImport } from './routes/_app.hr.attendance'
 import { Route as AppAdmissionSettingsRouteImport } from './routes/_app.admission.settings'
 import { Route as AppAdmissionScreeningRouteImport } from './routes/_app.admission.screening'
 import { Route as AppAdmissionReportsRouteImport } from './routes/_app.admission.reports'
@@ -142,6 +143,11 @@ const AppHrEmployeesRoute = AppHrEmployeesRouteImport.update({
   path: '/employees',
   getParentRoute: () => AppHrRoute,
 } as any)
+const AppHrAttendanceRoute = AppHrAttendanceRouteImport.update({
+  id: '/attendance',
+  path: '/attendance',
+  getParentRoute: () => AppHrRoute,
+} as any)
 const AppAdmissionSettingsRoute = AppAdmissionSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -233,6 +239,7 @@ export interface FileRoutesByFullPath {
   '/admission/reports': typeof AppAdmissionReportsRoute
   '/admission/screening': typeof AppAdmissionScreeningRoute
   '/admission/settings': typeof AppAdmissionSettingsRoute
+  '/hr/attendance': typeof AppHrAttendanceRoute
   '/hr/employees': typeof AppHrEmployeesRoute
   '/sales/agents': typeof AppSalesAgentsRouteWithChildren
   '/sales/leads': typeof AppSalesLeadsRoute
@@ -263,6 +270,7 @@ export interface FileRoutesByTo {
   '/admission/reports': typeof AppAdmissionReportsRoute
   '/admission/screening': typeof AppAdmissionScreeningRoute
   '/admission/settings': typeof AppAdmissionSettingsRoute
+  '/hr/attendance': typeof AppHrAttendanceRoute
   '/hr/employees': typeof AppHrEmployeesRoute
   '/sales/leads': typeof AppSalesLeadsRoute
   '/academic': typeof AppAcademicIndexRoute
@@ -298,6 +306,7 @@ export interface FileRoutesById {
   '/_app/admission/reports': typeof AppAdmissionReportsRoute
   '/_app/admission/screening': typeof AppAdmissionScreeningRoute
   '/_app/admission/settings': typeof AppAdmissionSettingsRoute
+  '/_app/hr/attendance': typeof AppHrAttendanceRoute
   '/_app/hr/employees': typeof AppHrEmployeesRoute
   '/_app/sales/agents': typeof AppSalesAgentsRouteWithChildren
   '/_app/sales/leads': typeof AppSalesLeadsRoute
@@ -334,6 +343,7 @@ export interface FileRouteTypes {
     | '/admission/reports'
     | '/admission/screening'
     | '/admission/settings'
+    | '/hr/attendance'
     | '/hr/employees'
     | '/sales/agents'
     | '/sales/leads'
@@ -364,6 +374,7 @@ export interface FileRouteTypes {
     | '/admission/reports'
     | '/admission/screening'
     | '/admission/settings'
+    | '/hr/attendance'
     | '/hr/employees'
     | '/sales/leads'
     | '/academic'
@@ -398,6 +409,7 @@ export interface FileRouteTypes {
     | '/_app/admission/reports'
     | '/_app/admission/screening'
     | '/_app/admission/settings'
+    | '/_app/hr/attendance'
     | '/_app/hr/employees'
     | '/_app/sales/agents'
     | '/_app/sales/leads'
@@ -555,6 +567,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppHrEmployeesRouteImport
       parentRoute: typeof AppHrRoute
     }
+    '/_app/hr/attendance': {
+      id: '/_app/hr/attendance'
+      path: '/attendance'
+      fullPath: '/hr/attendance'
+      preLoaderRoute: typeof AppHrAttendanceRouteImport
+      parentRoute: typeof AppHrRoute
+    }
     '/_app/admission/settings': {
       id: '/_app/admission/settings'
       path: '/settings'
@@ -696,11 +715,13 @@ const AppAdmissionRouteWithChildren = AppAdmissionRoute._addFileChildren(
 )
 
 interface AppHrRouteChildren {
+  AppHrAttendanceRoute: typeof AppHrAttendanceRoute
   AppHrEmployeesRoute: typeof AppHrEmployeesRoute
   AppHrIndexRoute: typeof AppHrIndexRoute
 }
 
 const AppHrRouteChildren: AppHrRouteChildren = {
+  AppHrAttendanceRoute: AppHrAttendanceRoute,
   AppHrEmployeesRoute: AppHrEmployeesRoute,
   AppHrIndexRoute: AppHrIndexRoute,
 }
