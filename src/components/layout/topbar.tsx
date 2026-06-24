@@ -1,4 +1,4 @@
-import { Bell, Plus, Search, Sparkles, Sun, Moon, ChevronDown } from "lucide-react";
+import { Bell, Search, Sparkles, Sun, Moon, ChevronDown } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 import { Button } from "@/components/ui/button";
 
