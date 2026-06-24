@@ -1,4 +1,4 @@
-import { Bell, Plus, Search, Sparkles, Sun, Moon, ChevronDown } from "lucide-react";
+import { Bell, Search, Sparkles, Sun, Moon, ChevronDown } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 import { Button } from "@/components/ui/button";
 
@@ -30,10 +30,6 @@ export function Topbar() {
         <span className="text-sm">Ask AI</span>
       </Button>
 
-      <Button size="sm" className="gap-1.5 shadow-soft">
-        <Plus className="size-4" />
-        <span className="hidden sm:inline">Create</span>
-      </Button>
 
       <button
         onClick={toggle}
