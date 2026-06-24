@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_app/hr/")({
 });
 
 const chartConfig = {
-  count: { label: "Employees", color: "hsl(var(--chart-1))" },
+  count: { label: "Employees", color: "var(--chart-1)" },
 };
 
 function Dashboard() {
@@ -81,7 +81,7 @@ function Dashboard() {
               <XAxis dataKey="dept" tickLine={false} axisLine={false} fontSize={12} />
               <YAxis tickLine={false} axisLine={false} fontSize={12} allowDecimals={false} />
               <ChartTooltip content={<ChartTooltipContent />} />
-              <Bar dataKey="count" fill="hsl(var(--chart-1))" radius={[6, 6, 0, 0]} />
+              <Bar dataKey="count" fill="var(--chart-1)" radius={[6, 6, 0, 0]} />
             </BarChart>
           </ChartContainer>
         </Section>
