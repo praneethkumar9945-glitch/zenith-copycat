@@ -23,10 +23,18 @@ import { Route as AppAiRouteImport } from './routes/_app.ai'
 import { Route as AppAdmissionRouteImport } from './routes/_app.admission'
 import { Route as AppAcademicRouteImport } from './routes/_app.academic'
 import { Route as AppSalesIndexRouteImport } from './routes/_app.sales.index'
+import { Route as AppHrIndexRouteImport } from './routes/_app.hr.index'
 import { Route as AppAdmissionIndexRouteImport } from './routes/_app.admission.index'
 import { Route as AppAcademicIndexRouteImport } from './routes/_app.academic.index'
 import { Route as AppSalesLeadsRouteImport } from './routes/_app.sales.leads'
 import { Route as AppSalesAgentsRouteImport } from './routes/_app.sales.agents'
+import { Route as AppHrUsersRouteImport } from './routes/_app.hr.users'
+import { Route as AppHrReportsRouteImport } from './routes/_app.hr.reports'
+import { Route as AppHrPerformanceRouteImport } from './routes/_app.hr.performance'
+import { Route as AppHrPayrollRouteImport } from './routes/_app.hr.payroll'
+import { Route as AppHrLeaveRouteImport } from './routes/_app.hr.leave'
+import { Route as AppHrEmployeesRouteImport } from './routes/_app.hr.employees'
+import { Route as AppHrAttendanceRouteImport } from './routes/_app.hr.attendance'
 import { Route as AppAdmissionSettingsRouteImport } from './routes/_app.admission.settings'
 import { Route as AppAdmissionScreeningRouteImport } from './routes/_app.admission.screening'
 import { Route as AppAdmissionReportsRouteImport } from './routes/_app.admission.reports'
@@ -110,6 +118,11 @@ const AppSalesIndexRoute = AppSalesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppSalesRoute,
 } as any)
+const AppHrIndexRoute = AppHrIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppHrRoute,
+} as any)
 const AppAdmissionIndexRoute = AppAdmissionIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -129,6 +142,41 @@ const AppSalesAgentsRoute = AppSalesAgentsRouteImport.update({
   id: '/agents',
   path: '/agents',
   getParentRoute: () => AppSalesRoute,
+} as any)
+const AppHrUsersRoute = AppHrUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AppHrRoute,
+} as any)
+const AppHrReportsRoute = AppHrReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppHrRoute,
+} as any)
+const AppHrPerformanceRoute = AppHrPerformanceRouteImport.update({
+  id: '/performance',
+  path: '/performance',
+  getParentRoute: () => AppHrRoute,
+} as any)
+const AppHrPayrollRoute = AppHrPayrollRouteImport.update({
+  id: '/payroll',
+  path: '/payroll',
+  getParentRoute: () => AppHrRoute,
+} as any)
+const AppHrLeaveRoute = AppHrLeaveRouteImport.update({
+  id: '/leave',
+  path: '/leave',
+  getParentRoute: () => AppHrRoute,
+} as any)
+const AppHrEmployeesRoute = AppHrEmployeesRouteImport.update({
+  id: '/employees',
+  path: '/employees',
+  getParentRoute: () => AppHrRoute,
+} as any)
+const AppHrAttendanceRoute = AppHrAttendanceRouteImport.update({
+  id: '/attendance',
+  path: '/attendance',
+  getParentRoute: () => AppHrRoute,
 } as any)
 const AppAdmissionSettingsRoute = AppAdmissionSettingsRouteImport.update({
   id: '/settings',
@@ -205,7 +253,7 @@ export interface FileRoutesByFullPath {
   '/crm': typeof AppCrmRoute
   '/exams': typeof AppExamsRoute
   '/fees': typeof AppFeesRoute
-  '/hr': typeof AppHrRoute
+  '/hr': typeof AppHrRouteWithChildren
   '/marketing': typeof AppMarketingRoute
   '/sales': typeof AppSalesRouteWithChildren
   '/students': typeof AppStudentsRoute
@@ -221,10 +269,18 @@ export interface FileRoutesByFullPath {
   '/admission/reports': typeof AppAdmissionReportsRoute
   '/admission/screening': typeof AppAdmissionScreeningRoute
   '/admission/settings': typeof AppAdmissionSettingsRoute
+  '/hr/attendance': typeof AppHrAttendanceRoute
+  '/hr/employees': typeof AppHrEmployeesRoute
+  '/hr/leave': typeof AppHrLeaveRoute
+  '/hr/payroll': typeof AppHrPayrollRoute
+  '/hr/performance': typeof AppHrPerformanceRoute
+  '/hr/reports': typeof AppHrReportsRoute
+  '/hr/users': typeof AppHrUsersRoute
   '/sales/agents': typeof AppSalesAgentsRouteWithChildren
   '/sales/leads': typeof AppSalesLeadsRoute
   '/academic/': typeof AppAcademicIndexRoute
   '/admission/': typeof AppAdmissionIndexRoute
+  '/hr/': typeof AppHrIndexRoute
   '/sales/': typeof AppSalesIndexRoute
   '/sales/agents/$id': typeof AppSalesAgentsIdRoute
   '/sales/agents/': typeof AppSalesAgentsIndexRoute
@@ -234,7 +290,6 @@ export interface FileRoutesByTo {
   '/crm': typeof AppCrmRoute
   '/exams': typeof AppExamsRoute
   '/fees': typeof AppFeesRoute
-  '/hr': typeof AppHrRoute
   '/marketing': typeof AppMarketingRoute
   '/students': typeof AppStudentsRoute
   '/workspace': typeof AppWorkspaceRoute
@@ -250,9 +305,17 @@ export interface FileRoutesByTo {
   '/admission/reports': typeof AppAdmissionReportsRoute
   '/admission/screening': typeof AppAdmissionScreeningRoute
   '/admission/settings': typeof AppAdmissionSettingsRoute
+  '/hr/attendance': typeof AppHrAttendanceRoute
+  '/hr/employees': typeof AppHrEmployeesRoute
+  '/hr/leave': typeof AppHrLeaveRoute
+  '/hr/payroll': typeof AppHrPayrollRoute
+  '/hr/performance': typeof AppHrPerformanceRoute
+  '/hr/reports': typeof AppHrReportsRoute
+  '/hr/users': typeof AppHrUsersRoute
   '/sales/leads': typeof AppSalesLeadsRoute
   '/academic': typeof AppAcademicIndexRoute
   '/admission': typeof AppAdmissionIndexRoute
+  '/hr': typeof AppHrIndexRoute
   '/sales': typeof AppSalesIndexRoute
   '/sales/agents/$id': typeof AppSalesAgentsIdRoute
   '/sales/agents': typeof AppSalesAgentsIndexRoute
@@ -266,7 +329,7 @@ export interface FileRoutesById {
   '/_app/crm': typeof AppCrmRoute
   '/_app/exams': typeof AppExamsRoute
   '/_app/fees': typeof AppFeesRoute
-  '/_app/hr': typeof AppHrRoute
+  '/_app/hr': typeof AppHrRouteWithChildren
   '/_app/marketing': typeof AppMarketingRoute
   '/_app/sales': typeof AppSalesRouteWithChildren
   '/_app/students': typeof AppStudentsRoute
@@ -283,10 +346,18 @@ export interface FileRoutesById {
   '/_app/admission/reports': typeof AppAdmissionReportsRoute
   '/_app/admission/screening': typeof AppAdmissionScreeningRoute
   '/_app/admission/settings': typeof AppAdmissionSettingsRoute
+  '/_app/hr/attendance': typeof AppHrAttendanceRoute
+  '/_app/hr/employees': typeof AppHrEmployeesRoute
+  '/_app/hr/leave': typeof AppHrLeaveRoute
+  '/_app/hr/payroll': typeof AppHrPayrollRoute
+  '/_app/hr/performance': typeof AppHrPerformanceRoute
+  '/_app/hr/reports': typeof AppHrReportsRoute
+  '/_app/hr/users': typeof AppHrUsersRoute
   '/_app/sales/agents': typeof AppSalesAgentsRouteWithChildren
   '/_app/sales/leads': typeof AppSalesLeadsRoute
   '/_app/academic/': typeof AppAcademicIndexRoute
   '/_app/admission/': typeof AppAdmissionIndexRoute
+  '/_app/hr/': typeof AppHrIndexRoute
   '/_app/sales/': typeof AppSalesIndexRoute
   '/_app/sales/agents/$id': typeof AppSalesAgentsIdRoute
   '/_app/sales/agents/': typeof AppSalesAgentsIndexRoute
@@ -317,10 +388,18 @@ export interface FileRouteTypes {
     | '/admission/reports'
     | '/admission/screening'
     | '/admission/settings'
+    | '/hr/attendance'
+    | '/hr/employees'
+    | '/hr/leave'
+    | '/hr/payroll'
+    | '/hr/performance'
+    | '/hr/reports'
+    | '/hr/users'
     | '/sales/agents'
     | '/sales/leads'
     | '/academic/'
     | '/admission/'
+    | '/hr/'
     | '/sales/'
     | '/sales/agents/$id'
     | '/sales/agents/'
@@ -330,7 +409,6 @@ export interface FileRouteTypes {
     | '/crm'
     | '/exams'
     | '/fees'
-    | '/hr'
     | '/marketing'
     | '/students'
     | '/workspace'
@@ -346,9 +424,17 @@ export interface FileRouteTypes {
     | '/admission/reports'
     | '/admission/screening'
     | '/admission/settings'
+    | '/hr/attendance'
+    | '/hr/employees'
+    | '/hr/leave'
+    | '/hr/payroll'
+    | '/hr/performance'
+    | '/hr/reports'
+    | '/hr/users'
     | '/sales/leads'
     | '/academic'
     | '/admission'
+    | '/hr'
     | '/sales'
     | '/sales/agents/$id'
     | '/sales/agents'
@@ -378,10 +464,18 @@ export interface FileRouteTypes {
     | '/_app/admission/reports'
     | '/_app/admission/screening'
     | '/_app/admission/settings'
+    | '/_app/hr/attendance'
+    | '/_app/hr/employees'
+    | '/_app/hr/leave'
+    | '/_app/hr/payroll'
+    | '/_app/hr/performance'
+    | '/_app/hr/reports'
+    | '/_app/hr/users'
     | '/_app/sales/agents'
     | '/_app/sales/leads'
     | '/_app/academic/'
     | '/_app/admission/'
+    | '/_app/hr/'
     | '/_app/sales/'
     | '/_app/sales/agents/$id'
     | '/_app/sales/agents/'
@@ -491,6 +585,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSalesIndexRouteImport
       parentRoute: typeof AppSalesRoute
     }
+    '/_app/hr/': {
+      id: '/_app/hr/'
+      path: '/'
+      fullPath: '/hr/'
+      preLoaderRoute: typeof AppHrIndexRouteImport
+      parentRoute: typeof AppHrRoute
+    }
     '/_app/admission/': {
       id: '/_app/admission/'
       path: '/'
@@ -518,6 +619,55 @@ declare module '@tanstack/react-router' {
       fullPath: '/sales/agents'
       preLoaderRoute: typeof AppSalesAgentsRouteImport
       parentRoute: typeof AppSalesRoute
+    }
+    '/_app/hr/users': {
+      id: '/_app/hr/users'
+      path: '/users'
+      fullPath: '/hr/users'
+      preLoaderRoute: typeof AppHrUsersRouteImport
+      parentRoute: typeof AppHrRoute
+    }
+    '/_app/hr/reports': {
+      id: '/_app/hr/reports'
+      path: '/reports'
+      fullPath: '/hr/reports'
+      preLoaderRoute: typeof AppHrReportsRouteImport
+      parentRoute: typeof AppHrRoute
+    }
+    '/_app/hr/performance': {
+      id: '/_app/hr/performance'
+      path: '/performance'
+      fullPath: '/hr/performance'
+      preLoaderRoute: typeof AppHrPerformanceRouteImport
+      parentRoute: typeof AppHrRoute
+    }
+    '/_app/hr/payroll': {
+      id: '/_app/hr/payroll'
+      path: '/payroll'
+      fullPath: '/hr/payroll'
+      preLoaderRoute: typeof AppHrPayrollRouteImport
+      parentRoute: typeof AppHrRoute
+    }
+    '/_app/hr/leave': {
+      id: '/_app/hr/leave'
+      path: '/leave'
+      fullPath: '/hr/leave'
+      preLoaderRoute: typeof AppHrLeaveRouteImport
+      parentRoute: typeof AppHrRoute
+    }
+    '/_app/hr/employees': {
+      id: '/_app/hr/employees'
+      path: '/employees'
+      fullPath: '/hr/employees'
+      preLoaderRoute: typeof AppHrEmployeesRouteImport
+      parentRoute: typeof AppHrRoute
+    }
+    '/_app/hr/attendance': {
+      id: '/_app/hr/attendance'
+      path: '/attendance'
+      fullPath: '/hr/attendance'
+      preLoaderRoute: typeof AppHrAttendanceRouteImport
+      parentRoute: typeof AppHrRoute
     }
     '/_app/admission/settings': {
       id: '/_app/admission/settings'
@@ -659,6 +809,30 @@ const AppAdmissionRouteWithChildren = AppAdmissionRoute._addFileChildren(
   AppAdmissionRouteChildren,
 )
 
+interface AppHrRouteChildren {
+  AppHrAttendanceRoute: typeof AppHrAttendanceRoute
+  AppHrEmployeesRoute: typeof AppHrEmployeesRoute
+  AppHrLeaveRoute: typeof AppHrLeaveRoute
+  AppHrPayrollRoute: typeof AppHrPayrollRoute
+  AppHrPerformanceRoute: typeof AppHrPerformanceRoute
+  AppHrReportsRoute: typeof AppHrReportsRoute
+  AppHrUsersRoute: typeof AppHrUsersRoute
+  AppHrIndexRoute: typeof AppHrIndexRoute
+}
+
+const AppHrRouteChildren: AppHrRouteChildren = {
+  AppHrAttendanceRoute: AppHrAttendanceRoute,
+  AppHrEmployeesRoute: AppHrEmployeesRoute,
+  AppHrLeaveRoute: AppHrLeaveRoute,
+  AppHrPayrollRoute: AppHrPayrollRoute,
+  AppHrPerformanceRoute: AppHrPerformanceRoute,
+  AppHrReportsRoute: AppHrReportsRoute,
+  AppHrUsersRoute: AppHrUsersRoute,
+  AppHrIndexRoute: AppHrIndexRoute,
+}
+
+const AppHrRouteWithChildren = AppHrRoute._addFileChildren(AppHrRouteChildren)
+
 interface AppSalesAgentsRouteChildren {
   AppSalesAgentsIdRoute: typeof AppSalesAgentsIdRoute
   AppSalesAgentsIndexRoute: typeof AppSalesAgentsIndexRoute
@@ -696,7 +870,7 @@ interface AppRouteChildren {
   AppCrmRoute: typeof AppCrmRoute
   AppExamsRoute: typeof AppExamsRoute
   AppFeesRoute: typeof AppFeesRoute
-  AppHrRoute: typeof AppHrRoute
+  AppHrRoute: typeof AppHrRouteWithChildren
   AppMarketingRoute: typeof AppMarketingRoute
   AppSalesRoute: typeof AppSalesRouteWithChildren
   AppStudentsRoute: typeof AppStudentsRoute
@@ -711,7 +885,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppCrmRoute: AppCrmRoute,
   AppExamsRoute: AppExamsRoute,
   AppFeesRoute: AppFeesRoute,
-  AppHrRoute: AppHrRoute,
+  AppHrRoute: AppHrRouteWithChildren,
   AppMarketingRoute: AppMarketingRoute,
   AppSalesRoute: AppSalesRouteWithChildren,
   AppStudentsRoute: AppStudentsRoute,
