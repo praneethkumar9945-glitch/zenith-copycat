@@ -28,6 +28,7 @@ import { Route as AppAdmissionIndexRouteImport } from './routes/_app.admission.i
 import { Route as AppAcademicIndexRouteImport } from './routes/_app.academic.index'
 import { Route as AppSalesLeadsRouteImport } from './routes/_app.sales.leads'
 import { Route as AppSalesAgentsRouteImport } from './routes/_app.sales.agents'
+import { Route as AppHrUsersRouteImport } from './routes/_app.hr.users'
 import { Route as AppHrPerformanceRouteImport } from './routes/_app.hr.performance'
 import { Route as AppHrPayrollRouteImport } from './routes/_app.hr.payroll'
 import { Route as AppHrLeaveRouteImport } from './routes/_app.hr.leave'
@@ -140,6 +141,11 @@ const AppSalesAgentsRoute = AppSalesAgentsRouteImport.update({
   id: '/agents',
   path: '/agents',
   getParentRoute: () => AppSalesRoute,
+} as any)
+const AppHrUsersRoute = AppHrUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AppHrRoute,
 } as any)
 const AppHrPerformanceRoute = AppHrPerformanceRouteImport.update({
   id: '/performance',
@@ -262,6 +268,7 @@ export interface FileRoutesByFullPath {
   '/hr/leave': typeof AppHrLeaveRoute
   '/hr/payroll': typeof AppHrPayrollRoute
   '/hr/performance': typeof AppHrPerformanceRoute
+  '/hr/users': typeof AppHrUsersRoute
   '/sales/agents': typeof AppSalesAgentsRouteWithChildren
   '/sales/leads': typeof AppSalesLeadsRoute
   '/academic/': typeof AppAcademicIndexRoute
@@ -296,6 +303,7 @@ export interface FileRoutesByTo {
   '/hr/leave': typeof AppHrLeaveRoute
   '/hr/payroll': typeof AppHrPayrollRoute
   '/hr/performance': typeof AppHrPerformanceRoute
+  '/hr/users': typeof AppHrUsersRoute
   '/sales/leads': typeof AppSalesLeadsRoute
   '/academic': typeof AppAcademicIndexRoute
   '/admission': typeof AppAdmissionIndexRoute
@@ -335,6 +343,7 @@ export interface FileRoutesById {
   '/_app/hr/leave': typeof AppHrLeaveRoute
   '/_app/hr/payroll': typeof AppHrPayrollRoute
   '/_app/hr/performance': typeof AppHrPerformanceRoute
+  '/_app/hr/users': typeof AppHrUsersRoute
   '/_app/sales/agents': typeof AppSalesAgentsRouteWithChildren
   '/_app/sales/leads': typeof AppSalesLeadsRoute
   '/_app/academic/': typeof AppAcademicIndexRoute
@@ -375,6 +384,7 @@ export interface FileRouteTypes {
     | '/hr/leave'
     | '/hr/payroll'
     | '/hr/performance'
+    | '/hr/users'
     | '/sales/agents'
     | '/sales/leads'
     | '/academic/'
@@ -409,6 +419,7 @@ export interface FileRouteTypes {
     | '/hr/leave'
     | '/hr/payroll'
     | '/hr/performance'
+    | '/hr/users'
     | '/sales/leads'
     | '/academic'
     | '/admission'
@@ -447,6 +458,7 @@ export interface FileRouteTypes {
     | '/_app/hr/leave'
     | '/_app/hr/payroll'
     | '/_app/hr/performance'
+    | '/_app/hr/users'
     | '/_app/sales/agents'
     | '/_app/sales/leads'
     | '/_app/academic/'
@@ -595,6 +607,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/sales/agents'
       preLoaderRoute: typeof AppSalesAgentsRouteImport
       parentRoute: typeof AppSalesRoute
+    }
+    '/_app/hr/users': {
+      id: '/_app/hr/users'
+      path: '/users'
+      fullPath: '/hr/users'
+      preLoaderRoute: typeof AppHrUsersRouteImport
+      parentRoute: typeof AppHrRoute
     }
     '/_app/hr/performance': {
       id: '/_app/hr/performance'
@@ -777,6 +796,7 @@ interface AppHrRouteChildren {
   AppHrLeaveRoute: typeof AppHrLeaveRoute
   AppHrPayrollRoute: typeof AppHrPayrollRoute
   AppHrPerformanceRoute: typeof AppHrPerformanceRoute
+  AppHrUsersRoute: typeof AppHrUsersRoute
   AppHrIndexRoute: typeof AppHrIndexRoute
 }
 
@@ -786,6 +806,7 @@ const AppHrRouteChildren: AppHrRouteChildren = {
   AppHrLeaveRoute: AppHrLeaveRoute,
   AppHrPayrollRoute: AppHrPayrollRoute,
   AppHrPerformanceRoute: AppHrPerformanceRoute,
+  AppHrUsersRoute: AppHrUsersRoute,
   AppHrIndexRoute: AppHrIndexRoute,
 }
 
