@@ -19,6 +19,7 @@ import { Route as AppExamsRouteImport } from './routes/_app.exams'
 import { Route as AppFeesRouteImport } from './routes/_app.fees'
 import { Route as AppHrRouteImport } from './routes/_app.hr'
 import { Route as AppMarketingRouteImport } from './routes/_app.marketing'
+import { Route as AppPlacementRouteImport } from './routes/_app.placement'
 import { Route as AppSalesRouteImport } from './routes/_app.sales'
 import { Route as AppStudentsRouteImport } from './routes/_app.students'
 import { Route as AppWorkspaceRouteImport } from './routes/_app.workspace'
@@ -43,11 +44,16 @@ import { Route as AppHrPayrollRouteImport } from './routes/_app.hr.payroll'
 import { Route as AppHrPerformanceRouteImport } from './routes/_app.hr.performance'
 import { Route as AppHrReportsRouteImport } from './routes/_app.hr.reports'
 import { Route as AppHrUsersRouteImport } from './routes/_app.hr.users'
+import { Route as AppPlacementIndexRouteImport } from './routes/_app.placement.index'
+import { Route as AppPlacementRoleRouteImport } from './routes/_app.placement.$role'
 import { Route as AppSalesIndexRouteImport } from './routes/_app.sales.index'
 import { Route as AppSalesAgentsRouteImport } from './routes/_app.sales.agents'
 import { Route as AppSalesLeadsRouteImport } from './routes/_app.sales.leads'
+import { Route as AppPlacementRoleIndexRouteImport } from './routes/_app.placement.$role.index'
+import { Route as AppPlacementRoleSectionRouteImport } from './routes/_app.placement.$role.$section'
 import { Route as AppSalesAgentsIndexRouteImport } from './routes/_app.sales.agents.index'
 import { Route as AppSalesAgentsIdRouteImport } from './routes/_app.sales.agents.$id'
+import { Route as AppPlacementRoleSectionIdRouteImport } from './routes/_app.placement.$role.$section.$id'
 
 const AppRoute = AppRouteImport.update({
   id: '/_app',
@@ -96,6 +102,11 @@ const AppHrRoute = AppHrRouteImport.update({
 const AppMarketingRoute = AppMarketingRouteImport.update({
   id: '/marketing',
   path: '/marketing',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPlacementRoute = AppPlacementRouteImport.update({
+  id: '/placement',
+  path: '/placement',
   getParentRoute: () => AppRoute,
 } as any)
 const AppSalesRoute = AppSalesRouteImport.update({
@@ -219,6 +230,16 @@ const AppHrUsersRoute = AppHrUsersRouteImport.update({
   path: '/users',
   getParentRoute: () => AppHrRoute,
 } as any)
+const AppPlacementIndexRoute = AppPlacementIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppPlacementRoute,
+} as any)
+const AppPlacementRoleRoute = AppPlacementRoleRouteImport.update({
+  id: '/$role',
+  path: '/$role',
+  getParentRoute: () => AppPlacementRoute,
+} as any)
 const AppSalesIndexRoute = AppSalesIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -234,6 +255,16 @@ const AppSalesLeadsRoute = AppSalesLeadsRouteImport.update({
   path: '/leads',
   getParentRoute: () => AppSalesRoute,
 } as any)
+const AppPlacementRoleIndexRoute = AppPlacementRoleIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppPlacementRoleRoute,
+} as any)
+const AppPlacementRoleSectionRoute = AppPlacementRoleSectionRouteImport.update({
+  id: '/$section',
+  path: '/$section',
+  getParentRoute: () => AppPlacementRoleRoute,
+} as any)
 const AppSalesAgentsIndexRoute = AppSalesAgentsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -244,6 +275,12 @@ const AppSalesAgentsIdRoute = AppSalesAgentsIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => AppSalesAgentsRoute,
 } as any)
+const AppPlacementRoleSectionIdRoute =
+  AppPlacementRoleSectionIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AppPlacementRoleSectionRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
@@ -255,6 +292,7 @@ export interface FileRoutesByFullPath {
   '/fees': typeof AppFeesRoute
   '/hr': typeof AppHrRouteWithChildren
   '/marketing': typeof AppMarketingRoute
+  '/placement': typeof AppPlacementRouteWithChildren
   '/sales': typeof AppSalesRouteWithChildren
   '/students': typeof AppStudentsRoute
   '/workspace': typeof AppWorkspaceRoute
@@ -276,14 +314,19 @@ export interface FileRoutesByFullPath {
   '/hr/performance': typeof AppHrPerformanceRoute
   '/hr/reports': typeof AppHrReportsRoute
   '/hr/users': typeof AppHrUsersRoute
+  '/placement/$role': typeof AppPlacementRoleRouteWithChildren
   '/sales/agents': typeof AppSalesAgentsRouteWithChildren
   '/sales/leads': typeof AppSalesLeadsRoute
   '/academic/': typeof AppAcademicIndexRoute
   '/admission/': typeof AppAdmissionIndexRoute
   '/hr/': typeof AppHrIndexRoute
+  '/placement/': typeof AppPlacementIndexRoute
   '/sales/': typeof AppSalesIndexRoute
+  '/placement/$role/$section': typeof AppPlacementRoleSectionRouteWithChildren
   '/sales/agents/$id': typeof AppSalesAgentsIdRoute
+  '/placement/$role/': typeof AppPlacementRoleIndexRoute
   '/sales/agents/': typeof AppSalesAgentsIndexRoute
+  '/placement/$role/$section/$id': typeof AppPlacementRoleSectionIdRoute
 }
 export interface FileRoutesByTo {
   '/ai': typeof AppAiRoute
@@ -316,9 +359,13 @@ export interface FileRoutesByTo {
   '/academic': typeof AppAcademicIndexRoute
   '/admission': typeof AppAdmissionIndexRoute
   '/hr': typeof AppHrIndexRoute
+  '/placement': typeof AppPlacementIndexRoute
   '/sales': typeof AppSalesIndexRoute
+  '/placement/$role/$section': typeof AppPlacementRoleSectionRouteWithChildren
   '/sales/agents/$id': typeof AppSalesAgentsIdRoute
+  '/placement/$role': typeof AppPlacementRoleIndexRoute
   '/sales/agents': typeof AppSalesAgentsIndexRoute
+  '/placement/$role/$section/$id': typeof AppPlacementRoleSectionIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -331,6 +378,7 @@ export interface FileRoutesById {
   '/_app/fees': typeof AppFeesRoute
   '/_app/hr': typeof AppHrRouteWithChildren
   '/_app/marketing': typeof AppMarketingRoute
+  '/_app/placement': typeof AppPlacementRouteWithChildren
   '/_app/sales': typeof AppSalesRouteWithChildren
   '/_app/students': typeof AppStudentsRoute
   '/_app/workspace': typeof AppWorkspaceRoute
@@ -353,14 +401,19 @@ export interface FileRoutesById {
   '/_app/hr/performance': typeof AppHrPerformanceRoute
   '/_app/hr/reports': typeof AppHrReportsRoute
   '/_app/hr/users': typeof AppHrUsersRoute
+  '/_app/placement/$role': typeof AppPlacementRoleRouteWithChildren
   '/_app/sales/agents': typeof AppSalesAgentsRouteWithChildren
   '/_app/sales/leads': typeof AppSalesLeadsRoute
   '/_app/academic/': typeof AppAcademicIndexRoute
   '/_app/admission/': typeof AppAdmissionIndexRoute
   '/_app/hr/': typeof AppHrIndexRoute
+  '/_app/placement/': typeof AppPlacementIndexRoute
   '/_app/sales/': typeof AppSalesIndexRoute
+  '/_app/placement/$role/$section': typeof AppPlacementRoleSectionRouteWithChildren
   '/_app/sales/agents/$id': typeof AppSalesAgentsIdRoute
+  '/_app/placement/$role/': typeof AppPlacementRoleIndexRoute
   '/_app/sales/agents/': typeof AppSalesAgentsIndexRoute
+  '/_app/placement/$role/$section/$id': typeof AppPlacementRoleSectionIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -374,6 +427,7 @@ export interface FileRouteTypes {
     | '/fees'
     | '/hr'
     | '/marketing'
+    | '/placement'
     | '/sales'
     | '/students'
     | '/workspace'
@@ -395,14 +449,19 @@ export interface FileRouteTypes {
     | '/hr/performance'
     | '/hr/reports'
     | '/hr/users'
+    | '/placement/$role'
     | '/sales/agents'
     | '/sales/leads'
     | '/academic/'
     | '/admission/'
     | '/hr/'
+    | '/placement/'
     | '/sales/'
+    | '/placement/$role/$section'
     | '/sales/agents/$id'
+    | '/placement/$role/'
     | '/sales/agents/'
+    | '/placement/$role/$section/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/ai'
@@ -435,9 +494,13 @@ export interface FileRouteTypes {
     | '/academic'
     | '/admission'
     | '/hr'
+    | '/placement'
     | '/sales'
+    | '/placement/$role/$section'
     | '/sales/agents/$id'
+    | '/placement/$role'
     | '/sales/agents'
+    | '/placement/$role/$section/$id'
   id:
     | '__root__'
     | '/_app'
@@ -449,6 +512,7 @@ export interface FileRouteTypes {
     | '/_app/fees'
     | '/_app/hr'
     | '/_app/marketing'
+    | '/_app/placement'
     | '/_app/sales'
     | '/_app/students'
     | '/_app/workspace'
@@ -471,14 +535,19 @@ export interface FileRouteTypes {
     | '/_app/hr/performance'
     | '/_app/hr/reports'
     | '/_app/hr/users'
+    | '/_app/placement/$role'
     | '/_app/sales/agents'
     | '/_app/sales/leads'
     | '/_app/academic/'
     | '/_app/admission/'
     | '/_app/hr/'
+    | '/_app/placement/'
     | '/_app/sales/'
+    | '/_app/placement/$role/$section'
     | '/_app/sales/agents/$id'
+    | '/_app/placement/$role/'
     | '/_app/sales/agents/'
+    | '/_app/placement/$role/$section/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -555,6 +624,13 @@ declare module '@tanstack/react-router' {
       path: '/marketing'
       fullPath: '/marketing'
       preLoaderRoute: typeof AppMarketingRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/placement': {
+      id: '/_app/placement'
+      path: '/placement'
+      fullPath: '/placement'
+      preLoaderRoute: typeof AppPlacementRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/sales': {
@@ -725,6 +801,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppHrUsersRouteImport
       parentRoute: typeof AppHrRoute
     }
+    '/_app/placement/': {
+      id: '/_app/placement/'
+      path: '/'
+      fullPath: '/placement/'
+      preLoaderRoute: typeof AppPlacementIndexRouteImport
+      parentRoute: typeof AppPlacementRoute
+    }
+    '/_app/placement/$role': {
+      id: '/_app/placement/$role'
+      path: '/$role'
+      fullPath: '/placement/$role'
+      preLoaderRoute: typeof AppPlacementRoleRouteImport
+      parentRoute: typeof AppPlacementRoute
+    }
     '/_app/sales/': {
       id: '/_app/sales/'
       path: '/'
@@ -746,6 +836,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSalesLeadsRouteImport
       parentRoute: typeof AppSalesRoute
     }
+    '/_app/placement/$role/': {
+      id: '/_app/placement/$role/'
+      path: '/'
+      fullPath: '/placement/$role/'
+      preLoaderRoute: typeof AppPlacementRoleIndexRouteImport
+      parentRoute: typeof AppPlacementRoleRoute
+    }
+    '/_app/placement/$role/$section': {
+      id: '/_app/placement/$role/$section'
+      path: '/$section'
+      fullPath: '/placement/$role/$section'
+      preLoaderRoute: typeof AppPlacementRoleSectionRouteImport
+      parentRoute: typeof AppPlacementRoleRoute
+    }
     '/_app/sales/agents/': {
       id: '/_app/sales/agents/'
       path: '/'
@@ -759,6 +863,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/sales/agents/$id'
       preLoaderRoute: typeof AppSalesAgentsIdRouteImport
       parentRoute: typeof AppSalesAgentsRoute
+    }
+    '/_app/placement/$role/$section/$id': {
+      id: '/_app/placement/$role/$section/$id'
+      path: '/$id'
+      fullPath: '/placement/$role/$section/$id'
+      preLoaderRoute: typeof AppPlacementRoleSectionIdRouteImport
+      parentRoute: typeof AppPlacementRoleSectionRoute
     }
   }
 }
@@ -833,6 +944,47 @@ const AppHrRouteChildren: AppHrRouteChildren = {
 
 const AppHrRouteWithChildren = AppHrRoute._addFileChildren(AppHrRouteChildren)
 
+interface AppPlacementRoleSectionRouteChildren {
+  AppPlacementRoleSectionIdRoute: typeof AppPlacementRoleSectionIdRoute
+}
+
+const AppPlacementRoleSectionRouteChildren: AppPlacementRoleSectionRouteChildren =
+  {
+    AppPlacementRoleSectionIdRoute: AppPlacementRoleSectionIdRoute,
+  }
+
+const AppPlacementRoleSectionRouteWithChildren =
+  AppPlacementRoleSectionRoute._addFileChildren(
+    AppPlacementRoleSectionRouteChildren,
+  )
+
+interface AppPlacementRoleRouteChildren {
+  AppPlacementRoleSectionRoute: typeof AppPlacementRoleSectionRouteWithChildren
+  AppPlacementRoleIndexRoute: typeof AppPlacementRoleIndexRoute
+}
+
+const AppPlacementRoleRouteChildren: AppPlacementRoleRouteChildren = {
+  AppPlacementRoleSectionRoute: AppPlacementRoleSectionRouteWithChildren,
+  AppPlacementRoleIndexRoute: AppPlacementRoleIndexRoute,
+}
+
+const AppPlacementRoleRouteWithChildren =
+  AppPlacementRoleRoute._addFileChildren(AppPlacementRoleRouteChildren)
+
+interface AppPlacementRouteChildren {
+  AppPlacementRoleRoute: typeof AppPlacementRoleRouteWithChildren
+  AppPlacementIndexRoute: typeof AppPlacementIndexRoute
+}
+
+const AppPlacementRouteChildren: AppPlacementRouteChildren = {
+  AppPlacementRoleRoute: AppPlacementRoleRouteWithChildren,
+  AppPlacementIndexRoute: AppPlacementIndexRoute,
+}
+
+const AppPlacementRouteWithChildren = AppPlacementRoute._addFileChildren(
+  AppPlacementRouteChildren,
+)
+
 interface AppSalesAgentsRouteChildren {
   AppSalesAgentsIdRoute: typeof AppSalesAgentsIdRoute
   AppSalesAgentsIndexRoute: typeof AppSalesAgentsIndexRoute
@@ -872,6 +1024,7 @@ interface AppRouteChildren {
   AppFeesRoute: typeof AppFeesRoute
   AppHrRoute: typeof AppHrRouteWithChildren
   AppMarketingRoute: typeof AppMarketingRoute
+  AppPlacementRoute: typeof AppPlacementRouteWithChildren
   AppSalesRoute: typeof AppSalesRouteWithChildren
   AppStudentsRoute: typeof AppStudentsRoute
   AppWorkspaceRoute: typeof AppWorkspaceRoute
@@ -887,6 +1040,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppFeesRoute: AppFeesRoute,
   AppHrRoute: AppHrRouteWithChildren,
   AppMarketingRoute: AppMarketingRoute,
+  AppPlacementRoute: AppPlacementRouteWithChildren,
   AppSalesRoute: AppSalesRouteWithChildren,
   AppStudentsRoute: AppStudentsRoute,
   AppWorkspaceRoute: AppWorkspaceRoute,

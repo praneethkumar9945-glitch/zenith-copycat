@@ -18,7 +18,7 @@ function Index() {
   return (
     <div className="-m-4 md:-m-6 min-h-[calc(100vh-4rem)] bg-background">
       <div className="mx-auto max-w-5xl px-6 py-16">
-        <div className="flex items-center gap-3"><div className="grid size-10 place-items-center rounded-md bg-primary text-primary-foreground"><GraduationCap className="size-5" /></div><div><div className="font-semibold">Vishwavidyalaya Institute</div><div className="text-sm text-muted-foreground">College Management Portal</div></div></div>
+        <div className="flex items-center gap-3"><div className="grid size-10 place-items-center rounded-md bg-primary text-primary-foreground"><GraduationCap className="size-5" /></div><div><div className="font-semibold">Greenwood Intl. School</div><div className="text-sm text-muted-foreground">College Management Portal</div></div></div>
         <h1 className="mt-10 font-display text-4xl font-semibold tracking-tight">Placements & Career Services</h1>
         <p className="mt-3 max-w-2xl text-muted-foreground">One shared record of every company, opportunity, drive and student — each team works on its own part of the same placement journey.</p>
         <h2 className="mt-12 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Sign in as</h2>
