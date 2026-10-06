@@ -12,3 +12,4 @@
 ## Architecture decisions
 
 - Keep the imported Marketing, Admissions & PR workspace namespaced under `src/components/marketing-suite` so its feature-local UI and data do not conflict with the Edusphere design system.
+- Keep the imported Placements & Career Services module namespaced under `src/components/placement` with routes under `/placement`, so it stays separate from other modules.
